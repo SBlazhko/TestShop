@@ -1,0 +1,5 @@
+<%= form_for @product do |f| %>
+	<%= f.text_field :name, placeholder: "Product name" %>
+	<%= f.text_area :description, class: "form-control", row: 3, placeholder: "Product description." %>
+	<%= f.submit "Update" %>
+<% end %>

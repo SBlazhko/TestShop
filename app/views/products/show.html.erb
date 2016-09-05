@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<%= image_tag @product.image.url(:medium) %>
+		</div>
+	
+		<div class="col-md-6">
+			<div class="panel panel-success">
+	  		<div class="panel-heading">
+	   		 	<h3 class="panel-title text-center"><%= @product.name %></h3>
+	  		</div>
+	  		<div class="panel-body">
+					<%= @product.description %>
+	  		</div>
+			</div>
+			<% if @product.user_id == current_user.id %>
+			<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Update</button>
+			<% end %>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" role="dialog">
+			  <div class="modal-dialog">
+			      <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-body">
+			        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">x</button>
+			        <%= form_for @product, url: category_product_path, method: :put do |f| %>
+			        	<%= f.text_field :name, placeholder: "Product name" %>
+								<%= f.text_area :description, class: "form-control", row: 3, placeholder: "Maximum 200 symbols" %>
+								<%= f.file_field :image %>
+								<%= f.submit "Update" %>
+			        <% end %>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
